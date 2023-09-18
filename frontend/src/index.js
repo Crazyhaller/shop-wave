@@ -11,11 +11,13 @@ import './assets/styles/index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import Home from './Pages/Home/Home'
+import ProductPage from './Pages/ProductPage/ProductPage'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<Home />} />
+      <Route path="/product/:id" element={<ProductPage />} />
     </Route>
   )
 )

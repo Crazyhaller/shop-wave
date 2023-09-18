@@ -7,13 +7,14 @@ main {
 }
 
 .rating svg {
-  color: #f8e825;
+  color: #6d5ab3;
 }
 
 .rating-text {
   font-size: 0.8rem;
   font-weight: 600;
   padding-left: 0.5rem;
+  color: #524192;
 }
 
 .product-title {

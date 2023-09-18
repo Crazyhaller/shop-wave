@@ -1,0 +1,23 @@
+{
+  "name": "shop-wave",
+  "version": "1.0.0",
+  "description": "eCommerce website built with MERN Stack",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Crazyhaller/shop-wave.git"
+  },
+  "author": "Suvigya Mishra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Crazyhaller/shop-wave/issues"
+  },
+  "homepage": "https://github.com/Crazyhaller/shop-wave#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,9 +1,10 @@
 import express from 'express'
-const router = express.Router()
 import {
   getProducts,
   getProductById,
 } from '../controllers/productController.js'
+
+const router = express.Router()
 
 // Product routes
 router.route('/').get(getProducts)

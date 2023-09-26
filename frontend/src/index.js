@@ -19,6 +19,7 @@ import Cart from './Pages/Cart/Cart'
 import Login from './Pages/Login/Login'
 import Register from './Pages/Register/Register'
 import Shipping from './Pages/Shipping/Shipping'
+import Payment from './Pages/Payment/Payment'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
 
       <Route path="" element={<PrivateRoute />}>
         <Route path="/shipping" element={<Shipping />} />
+        <Route path="/payment" element={<Payment />} />
       </Route>
     </Route>
   )

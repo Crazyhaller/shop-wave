@@ -51,6 +51,13 @@ const Order = () => {
     }
   }, [order, paypal, paypalDispatch, isPayPalLoading, errorPayPal])
 
+  function onApprove() {}
+  function onApproveTest() {
+    toast.success('Payment Success')
+  }
+  function onError() {}
+  function createOrder() {}
+
   return isLoading ? (
     <Loader />
   ) : error ? (
@@ -143,6 +150,31 @@ const Order = () => {
                 </Row>
               </ListGroup.Item>
               {/* PAYMENT BUTTON */}
+              {!order.isPaid && (
+                <ListGroup.Item>
+                  {isPayLoading && <Loader />}
+                  {isPending ? (
+                    <Loader />
+                  ) : (
+                    <div>
+                      <Button
+                        onClick={onApproveTest}
+                        style={{ marginBottom: '10px' }}
+                      >
+                        Test Pay Button
+                      </Button>
+                      <div>
+                        <PayPalButtons
+                          createOrder={createOrder}
+                          onApprove={onApprove}
+                          onError={onError}
+                        ></PayPalButtons>
+                      </div>
+                    </div>
+                  )}
+                </ListGroup.Item>
+              )}
+
               {/* MARK AS DELIVERED BUTTON */}
             </ListGroup>
           </Card>

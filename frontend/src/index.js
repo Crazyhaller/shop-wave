@@ -21,6 +21,7 @@ import Shipping from './Pages/Shipping/Shipping'
 import Payment from './Pages/Payment/Payment'
 import PlaceOrder from './Pages/Place Order/PlaceOrder'
 import Order from './Pages/Order/Order'
+import Profile from './Pages/Profile/Profile'
 import './assets/styles/bootstrap.custom.css'
 import './assets/styles/index.css'
 
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
         <Route path="/payment" element={<Payment />} />
         <Route path="/placeorder" element={<PlaceOrder />} />
         <Route path="/order/:id" element={<Order />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
     </Route>
   )

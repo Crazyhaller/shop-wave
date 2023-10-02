@@ -4,9 +4,11 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message/Message'
 import Loader from '../../components/Loader/Loader'
+import { FaTimes } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 import { useProfileMutation } from '../../slices/usersApiSlice'
 import { setCredentials } from '../../slices/authSlice'
+import { useGetMyOrdersQuery } from '../../slices/ordersApiSlice'
 
 const Profile = () => {
   const [name, setName] = useState('')
@@ -20,6 +22,12 @@ const Profile = () => {
 
   const [updateProfile, { isLoading: loadingUpdateProfile }] =
     useProfileMutation()
+
+  const {
+    data: myOrders,
+    isLoading: loadingMyOrders,
+    error: errorMyOrders,
+  } = useGetMyOrdersQuery()
 
   useEffect(() => {
     if (userInfo) {
@@ -101,7 +109,57 @@ const Profile = () => {
           {loadingUpdateProfile && <Loader />}
         </Form>
       </Col>
-      <Col md={9}></Col>
+      <Col md={9}>
+        <h2>My Orders</h2>
+        {loadingMyOrders ? (
+          <Loader />
+        ) : errorMyOrders ? (
+          <Message variant="danger">
+            {errorMyOrders?.data?.message || errorMyOrders.error}
+          </Message>
+        ) : (
+          <Table striped hover responsive className="table-sm">
+            <thead>
+              <th>ID</th>
+              <th>DATE</th>
+              <th>TOTAL</th>
+              <th>PAID</th>
+              <th>DELIVERED</th>
+              <th></th>
+            </thead>
+            <tbody>
+              {myOrders?.map((order) => (
+                <tr key={order._id}>
+                  <td>{order._id}</td>
+                  <td>{order.createdAt?.substring(0, 10)}</td>
+                  <td>{order.totalPrice}</td>
+                  <td>
+                    {order.isPaid ? (
+                      order.paidAt?.substring(0, 10)
+                    ) : (
+                      <FaTimes style={{ color: 'red' }} />
+                    )}
+                  </td>
+                  <td>
+                    {order.isDelivered ? (
+                      order.deliveredAt?.substring(0, 10)
+                    ) : (
+                      <FaTimes style={{ color: 'red' }} />
+                    )}
+                  </td>
+                  <td>
+                    <LinkContainer to={`/order/${order._id}`}>
+                      <Button variant="light" className="btn-sm">
+                        Details
+                      </Button>
+                    </LinkContainer>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        )}
+      </Col>
     </Row>
   )
 }

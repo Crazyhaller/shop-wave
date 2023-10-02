@@ -51,12 +51,40 @@ const Order = () => {
     }
   }, [order, paypal, paypalDispatch, isPayPalLoading, errorPayPal])
 
-  function onApprove() {}
-  function onApproveTest() {
-    toast.success('Payment Success')
+  function onApprove(data, actions) {
+    return actions.order.capture().then(async (details) => {
+      try {
+      } catch (error) {
+        toast.error(error?.data?.message || error.message)
+      }
+    })
   }
-  function onError() {}
-  function createOrder() {}
+
+  async function onApproveTest() {
+    await payOrder({ orderId, details: { payer: {} } })
+    refetch()
+    toast.success('Payment Successfull')
+  }
+
+  function onError(error) {
+    toast.error(error.message)
+  }
+
+  function createOrder(data, actions) {
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            amount: {
+              value: order.totalPrice,
+            },
+          },
+        ],
+      })
+      .then((orderId) => {
+        return orderId
+      })
+  }
 
   return isLoading ? (
     <Loader />

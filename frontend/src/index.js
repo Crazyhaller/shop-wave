@@ -11,7 +11,6 @@ import { Provider } from 'react-redux'
 import store from './store'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import PrivateRoute from './components/Private Route/PrivateRoute'
 import Home from './Pages/Home/Home'
 import ProductPage from './Pages/ProductPage/ProductPage'
 import Cart from './Pages/Cart/Cart'
@@ -22,6 +21,9 @@ import Payment from './Pages/Payment/Payment'
 import PlaceOrder from './Pages/Place Order/PlaceOrder'
 import Order from './Pages/Order/Order'
 import Profile from './Pages/Profile/Profile'
+import OrderList from './Pages/Order List/OrderList'
+import PrivateRoute from './components/Private Route/PrivateRoute'
+import AdminRoute from './components/Admin Route/AdminRoute'
 import './assets/styles/bootstrap.custom.css'
 import './assets/styles/index.css'
 
@@ -40,6 +42,10 @@ const router = createBrowserRouter(
         <Route path="/placeorder" element={<PlaceOrder />} />
         <Route path="/order/:id" element={<Order />} />
         <Route path="/profile" element={<Profile />} />
+      </Route>
+
+      <Route path="" element={<AdminRoute />}>
+        <Route path="/admin/orderlist" element={<OrderList />} />
       </Route>
     </Route>
   )

@@ -7,16 +7,27 @@ import { toast } from 'react-toastify'
 import {
   useGetProductsQuery,
   useCreateProductMutation,
+  useDeleteProductMutation,
 } from '../../slices/productsApiSlice'
 
 const ProductList = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery()
+
   const [createProduct, { isLoading: createLoading }] =
     useCreateProductMutation()
 
-  const deleteHandler = (id) => {
+  const [deleteProduct, { isLoading: loadingDelete }] =
+    useDeleteProductMutation()
+
+  const deleteHandler = async (id) => {
     if (window.confirm('Are you sure?')) {
-      // dispatch(deleteProduct(id))
+      try {
+        await deleteProduct(id)
+        toast.success('Product deleted successfully')
+        refetch()
+      } catch (error) {
+        toast.error(error?.data?.message || error.error)
+      }
     }
   }
 
@@ -45,6 +56,7 @@ const ProductList = () => {
       </Row>
 
       {createLoading && <Loader />}
+      {loadingDelete && <Loader />}
 
       {isLoading ? (
         <Loader />

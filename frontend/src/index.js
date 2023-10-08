@@ -24,6 +24,7 @@ import Profile from './Pages/Profile/Profile'
 import OrderList from './Pages/Admin/OrderList'
 import ProductList from './Pages/Admin/ProductList'
 import ProductEdit from './Pages/Admin/ProductEdit'
+import UserList from './Pages/Admin/UserList'
 import PrivateRoute from './components/Private Route/PrivateRoute'
 import AdminRoute from './components/Admin Route/AdminRoute'
 import './assets/styles/bootstrap.custom.css'
@@ -50,6 +51,7 @@ const router = createBrowserRouter(
         <Route path="/admin/orderlist" element={<OrderList />} />
         <Route path="/admin/productlist" element={<ProductList />} />
         <Route path="/admin/product/:id/edit" element={<ProductEdit />} />
+        <Route path="/admin/userlist" element={<UserList />} />
       </Route>
     </Route>
   )

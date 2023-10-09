@@ -1,12 +1,14 @@
 import { Row, Col } from 'react-bootstrap'
 import Product from '../../components/Product/Product'
+import { useParams } from 'react-router-dom'
 import { useGetProductsQuery } from '../../slices/productsApiSlice.js'
 import Loader from '../../components/Loader/Loader'
 import Message from '../../components/Message/Message'
 import './home.css'
 
 const Home = () => {
-  const { data: products, isLoading, error } = useGetProductsQuery()
+  const { pageNumber } = useParams()
+  const { data, isLoading, error } = useGetProductsQuery({ pageNumber })
 
   return (
     <>
@@ -20,7 +22,7 @@ const Home = () => {
         <>
           <h1 className="home-heading">Latest Products</h1>
           <Row>
-            {products.map((product) => (
+            {data.products.map((product) => (
               <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
                 <Product product={product} />
               </Col>

@@ -6,6 +6,7 @@ import { useGetProductsQuery } from '../../slices/productsApiSlice.js'
 import Loader from '../../components/Loader/Loader'
 import Message from '../../components/Message/Message'
 import Paginate from '../../components/Paginate/Paginate'
+import Meta from '../../components/Meta/Meta'
 import ProductCarousel from '../../components/ProductCarousel/ProductCarousel'
 import './home.css'
 
@@ -33,6 +34,7 @@ const Home = () => {
         </Message>
       ) : (
         <>
+          <Meta />
           <h1 className="home-heading">Latest Products</h1>
           <Row>
             {data.products.map((product) => (

@@ -6,6 +6,7 @@ import { useGetProductsQuery } from '../../slices/productsApiSlice.js'
 import Loader from '../../components/Loader/Loader'
 import Message from '../../components/Message/Message'
 import Paginate from '../../components/Paginate/Paginate'
+import ProductCarousel from '../../components/ProductCarousel/ProductCarousel'
 import './home.css'
 
 const Home = () => {
@@ -17,7 +18,9 @@ const Home = () => {
 
   return (
     <>
-      {keyword && (
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
         <Link to="/" className="btn btn-light mb-4">
           Go Back
         </Link>

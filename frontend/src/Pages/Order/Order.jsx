@@ -137,7 +137,7 @@ const Order = () => {
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>Paymenet Method</h2>
+              <h2>Payment Method</h2>
               <p>
                 <strong>Method: </strong>
                 {order.paymentMethod}

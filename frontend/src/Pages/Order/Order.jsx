@@ -66,7 +66,7 @@ const Order = () => {
     })
   }
 
-  async function onApproveTest() {
+  async function onApproveTest(data, actions) {
     await payOrder({ orderId, details: { payer: {} } })
     refetch()
     toast.success('Payment Successfull')
@@ -212,6 +212,7 @@ const Order = () => {
                           createOrder={createOrder}
                           onApprove={onApprove}
                           onError={onError}
+                          visibility="visible"
                         ></PayPalButtons>
                       </div>
                     </div>

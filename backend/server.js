@@ -9,12 +9,15 @@ import orderRoutes from './routes/orderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
+import cors from 'cors'
 
 const port = process.env.PORT || 5000
 
 connectDB()
 
 const app = express()
+
+app.use(cors())
 
 // Body parser
 app.use(express.json())

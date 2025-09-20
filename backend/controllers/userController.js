@@ -54,7 +54,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc Login user and clear cookie
+// @desc Logout user and clear cookie
 // @route POST /api/users/logout
 // @access Private
 const logoutUser = asyncHandler(async (req, res) => {

@@ -31,6 +31,12 @@ const productSchema = mongoose.Schema(
   }
 )
 
+// ✅ Add indexes for faster queries
+productSchema.index({ name: 1 }) // for keyword search
+productSchema.index({ rating: -1 }) // for top products
+productSchema.index({ category: 1 }) // for filtering by category
+productSchema.index({ price: 1 }) // optional, if you filter/sort by price
+
 const Product = mongoose.model('Product', productSchema)
 
 export default Product

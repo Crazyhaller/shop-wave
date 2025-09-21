@@ -146,6 +146,39 @@ const getTopProducts = asyncHandler(async (req, res) => {
   res.status(200).json(products)
 })
 
+// @desc  Get home page data (products + top products)
+// @route GET /api/products/home
+// @access Public
+const getHomeData = asyncHandler(async (req, res) => {
+  const pageSize = 8
+  const page = Number(req.query.pageNumber) || 1
+
+  const keyword = req.query.keyword
+    ? { name: { $regex: req.query.keyword, $options: 'i' } }
+    : {}
+
+  const [count, products, topProducts] = await Promise.all([
+    Product.countDocuments({ ...keyword }),
+    Product.find({ ...keyword })
+      .select('_id name price image rating')
+      .limit(pageSize)
+      .skip(pageSize * (page - 1))
+      .lean(),
+    Product.find({})
+      .select('_id name price image rating')
+      .sort({ rating: -1 })
+      .limit(3)
+      .lean(),
+  ])
+
+  res.json({
+    products,
+    topProducts,
+    page,
+    pages: Math.ceil(count / pageSize),
+  })
+})
+
 export {
   getProducts,
   getProductById,
@@ -154,4 +187,5 @@ export {
   deleteProduct,
   createProductReview,
   getTopProducts,
+  getHomeData,
 }

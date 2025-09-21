@@ -13,9 +13,9 @@ import checkObjectId from '../middleware/checkObjectId.js'
 
 const router = express.Router()
 
-// Product routes
-router.route('/').get(getProducts).post(protect, admin, createProduct)
+// safer order
 router.get('/top', getTopProducts)
+router.route('/').get(getProducts).post(protect, admin, createProduct)
 router
   .route('/:id')
   .get(checkObjectId, getProductById)

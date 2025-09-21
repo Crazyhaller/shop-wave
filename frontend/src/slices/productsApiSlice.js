@@ -80,4 +80,5 @@ export const {
   useUploadProductImageMutation,
   useDeleteProductMutation,
   useCreateReviewMutation,
+  useGetProductsQuery,
 } = productsApiSlice

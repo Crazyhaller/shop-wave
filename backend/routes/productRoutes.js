@@ -6,7 +6,7 @@ import {
   updateProduct,
   deleteProduct,
   createProductReview,
-  getTopProducts,
+  getHomeData,
 } from '../controllers/productController.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
 import checkObjectId from '../middleware/checkObjectId.js'
@@ -14,7 +14,8 @@ import checkObjectId from '../middleware/checkObjectId.js'
 const router = express.Router()
 
 // safer order
-router.get('/top', getTopProducts)
+router.get('/home', getHomeData) // ✅ add this line
+
 router.route('/').get(getProducts).post(protect, admin, createProduct)
 router
   .route('/:id')
